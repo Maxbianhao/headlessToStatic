@@ -1,5 +1,6 @@
 const loadPage = require('./src/loadPage');
 const index = require('./template/index');
+const startdesign = require('./template/startdesign');
 const fs = require('fs');
 const modalList = require('./src/modalList');
 const buildTemplate = require('./src/buildTemplate');
@@ -16,7 +17,7 @@ if(modalList.index || modalList.all) {
 // 生成startdesign
 if(modalList.startdesign || modalList.all) {
   loadPage('https://moniwww.chuangkit.com/startdesign', (err, stdout, stderr) => {
-    fs.writeFile('html/startdesign', index(stdout), (werr) => {
+    fs.writeFile('html/startdesign', startdesign(stdout), (werr) => {
       console.log(werr);
     })
   });

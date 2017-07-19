@@ -1,4 +1,4 @@
-// 生成首页模版
+// 生成templatecenter模版
 const request = require('request');
 
 var indexPage;
@@ -15,3 +15,4 @@ var createTemplate = function(content) {
 
 
 module.exports = createTemplate; 
+
