@@ -15,7 +15,18 @@ for(let i = 0;i < parameter.length;i++) {
       break;
     case '--templatecenter-s': modalList.templatecenterS = true;
       break;
+    case '--templatecenter-m': modalList.templatecenterM = true;
+      break;
   }
+
+  if(/--fid-/.test(p)) {
+    modalList.fid = p.replace(/--fid-/, '');
+  }
+
+  if(/--sid-/.test(p)) {
+    modalList.sid = p.replace(/--sid-/, '');
+  }
+
 }
 
 module.exports = modalList;

@@ -7,7 +7,7 @@ const buildTemplate = require('./src/buildTemplate');
 
 // 生成首页index
 if(modalList.index || modalList.all) {
-  loadPage('https://moniwww.chuangkit.com/', (err, stdout, stderr) => {
+  loadPage(config.host + '/', (err, stdout, stderr) => {
     fs.writeFile('html/index', index(stdout), (werr) => {
       console.log(werr); 
     })
@@ -16,7 +16,7 @@ if(modalList.index || modalList.all) {
 
 // 生成startdesign
 if(modalList.startdesign || modalList.all) {
-  loadPage('https://moniwww.chuangkit.com/startdesign', (err, stdout, stderr) => {
+  loadPage(config.host + '/startdesign', (err, stdout, stderr) => {
     fs.writeFile('html/startdesign', startdesign(stdout), (werr) => {
       console.log(werr);
     })
@@ -30,5 +30,14 @@ if(modalList.templatecenterF || modalList.all) {
 
 // 生成模版中心二级页面
 if(modalList.templatecenterS || modalList.all) {
-  buildTemplate.buildTemplateS();
+  buildTemplate.buildTemplateS({
+    fid: modalList.fid,
+    sid: modalList.sid
+  });
 }
+
+// 生成模版中心中间页面
+if(modalList.templatecenterM || modalList.all) {
+  buildTemplate.buildTemplateM();
+}
+
