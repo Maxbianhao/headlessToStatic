@@ -18,3 +18,11 @@
 --fid-1|模版中心二级页面一级分类id（必须使用templatecenter-s指令）
 --sid-11|模版中心二级页面二级分类id（必须使用templatecenter-s跟-fid指令）
 --templatecenter-m|模版中心模版详情页
+
+## config/config文件说明
+变量|说明
+---|---
+host|页面域
+api|请求域
+max_num|chrome headless最大并发
+chrome|chrome指令头

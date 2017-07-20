@@ -1,8 +1,9 @@
 // 渲染页面
 const exec = require('child_process').exec;
+const config = require('../config/config');
 
 // chrome 指令
-const CHROME = '/Applications/Google\\ Chrome.app/Contents/MacOS/Google\\ Chrome';
+const CHROME = config.chrome;
 
 const launchHeadlessChrome = function() {
   let loadPage = loadPageArr.shift();
@@ -20,7 +21,7 @@ const launchHeadlessChrome = function() {
 global.loadPageNum = 0;
 global.initPageNum = 0;
 
-const maxLoadPageNum = 5;
+const maxLoadPageNum = config.max_num;
 var loadPageArr = [];
 
 const addLoadPageArr = function(url, callback) {
