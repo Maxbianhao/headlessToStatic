@@ -4,6 +4,7 @@ const startdesign = require('./template/startdesign');
 const fs = require('fs');
 const modalList = require('./src/modalList');
 const buildTemplate = require('./src/buildTemplate');
+const config = require('./config/config');
 
 // 生成首页index
 if(modalList.index || modalList.all) {
