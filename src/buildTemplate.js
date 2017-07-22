@@ -14,7 +14,9 @@ const buildTemplateF = function() {
       for(let i = 0;i < kinds.length;i++) {
         loadPage(config.host + '/templatecenter/all-kindId_' + kinds[i].kindId, (err, stdout, stderr) => {
           fs.writeFile('html/templatecenter/all-kindId_' + kinds[i].kindId, templatecenter(stdout), (werr) => {
-            console.log(werr);
+            global.buildPageNum++;
+            console.log('生成数量：' + global.buildPageNum);
+            console.log('生成路径：/templatecenter/all-kindId_' + kinds[i].kindId);
           })
         });
       }
@@ -24,7 +26,9 @@ const buildTemplateF = function() {
   // 模版中心首页
   loadPage(config.host + '/templatecenter/all', (err, stdout, stderr) => {
     fs.writeFile('html/templatecenter/all', templatecenter(stdout), (werr) => {
-      console.log(werr);
+      global.buildPageNum++;
+      console.log('生成数量：' + global.buildPageNum);
+      console.log('生成路径：/templatecenter/all');
     })
   });
 }
@@ -97,7 +101,9 @@ const buildTemplateM = function() {
       for(let i = 0;i < templateIds.length;i++) {
         loadPage(config.host + '/templatecenter/templatedetail-id_' + templateIds[i], (err, stdout, stderr) => {
           fs.writeFile('html/templatecenter/templatedetail-id_' + templateIds[i], templatecenter(stdout), (werr) => {
-            console.log(werr);
+            global.buildPageNum++;
+            console.log('生成数量：' + global.buildPageNum);
+            console.log('生成路径：/templatecenter/templatedetail-id_'  + templateIds[i]);
           })
         });
       }

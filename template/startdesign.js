@@ -1,9 +1,10 @@
 // 生成startdesign模版
 const request = require('request');
+const config = require('../config/config');
 
 var indexPage;
 
-request('https://moniwww.chuangkit.com/startdesign', (error, response, body) => {
+request(config.host + '/startdesign', (error, response, body) => {
   if(!error) {
     indexPage = body.replace(/\<body\>([\s\S]*)/,'');
   }

@@ -9,10 +9,14 @@ const launchHeadlessChrome = function() {
   let loadPage = loadPageArr.shift();
   if(loadPage == undefined) return;
   exec(`${CHROME} --headless --disable-gpu --dump-dom ${loadPage.url}`, (err, stdout, stderr) => {
+    global.initPageNum++;
     setTimeout(function() {
       global.loadPageNum--;
       launchHeadlessChrome()
     }, 500);
+
+    
+
     loadPage.callback(err, stdout, stderr);
   });
 }
@@ -20,6 +24,7 @@ const launchHeadlessChrome = function() {
 // 全局变量控制当前浏览器打开数量
 global.loadPageNum = 0;
 global.initPageNum = 0;
+global.buildPageNum = 0;
 
 const maxLoadPageNum = config.max_num;
 var loadPageArr = [];

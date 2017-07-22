@@ -58,7 +58,10 @@ const buildSecondPage = function(opts) {
                   let page_route = initRoute(data, '_', '-');
                   loadPage(config.host + '/templatecenter/secondpage-' + page_route, (err, stdout, stderr) => {
                     fs.writeFile('html/templatecenter/secondpage-' + page_route, templatecenter(stdout), (werr) => {
-                      console.log(werr);
+                      global.buildPageNum++;
+                      console.log('生成数量：' + global.buildPageNum);
+
+                      console.log('生成路径：/templatecenter/secondpage-' + page_route);
                     })
                   });
                 }

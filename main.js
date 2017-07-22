@@ -10,7 +10,9 @@ const config = require('./config/config');
 if(modalList.index || modalList.all) {
   loadPage(config.host + '/', (err, stdout, stderr) => {
     fs.writeFile('html/index', index(stdout), (werr) => {
-      console.log(werr); 
+      global.buildPageNum++;
+      console.log('生成数量：' + global.buildPageNum);
+      console.log('生成路径：index');
     })
   });
 }
@@ -19,7 +21,9 @@ if(modalList.index || modalList.all) {
 if(modalList.startdesign || modalList.all) {
   loadPage(config.host + '/startdesign', (err, stdout, stderr) => {
     fs.writeFile('html/startdesign', startdesign(stdout), (werr) => {
-      console.log(werr);
+      global.buildPageNum++;
+      console.log('生成数量：' + global.buildPageNum);
+      console.log('生成路径：/startdesign/');
     })
   });
 }
