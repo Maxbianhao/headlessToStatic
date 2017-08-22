@@ -11,6 +11,7 @@ const buildTemplateF = function() {
   request(config.api + '/design/listUsageKind.do?_dataType=json', (error, response, body) => {
     if(!error) {
       let kinds = JSON.parse(body).body.kinds;
+      if(kinds == null) return;
       for(let i = 0;i < kinds.length;i++) {
         loadPage(config.host + '/templatecenter/all-kindId_' + kinds[i].kindId, (err, stdout, stderr) => {
           fs.writeFile('html/templatecenter/all-kindId_' + kinds[i].kindId, templatecenter(stdout), (werr) => {
@@ -25,6 +26,7 @@ const buildTemplateF = function() {
 
   // 模版中心首页
   loadPage(config.host + '/templatecenter/all', (err, stdout, stderr) => {
+    console.log(config.host+ '/templatecenter/all');
     fs.writeFile('html/templatecenter/all', templatecenter(stdout), (werr) => {
       global.buildPageNum++;
       console.log('生成数量：' + global.buildPageNum);

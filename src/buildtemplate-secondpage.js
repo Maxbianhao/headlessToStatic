@@ -30,13 +30,25 @@ const buildSecondPage = function(opts) {
 
         // 请求模版参数
         let data = {};
+        let route_data = {};
 
         data.parentKindId = fid;
-        sid ? data.secondKindId = sid : '';
-        data.priceType = priceType;
+        route_data.pi = fid;
+        if(sid) {
+          data.secondKindId = sid;
+          route_data.si = sid;
+        }
+        if(tag) {
+          data.tagId = tag;
+          route_data.ti = tag;
+        }
         data.timeOrder = order;
+        route_data.o = order;
+        data.priceType = priceType;
+        route_data.pt = priceType;
         data.pageNo = 1;
-        tag ? data.tagId = tag : '';
+        route_data.pn = 1;
+        
 
         // 请求链接
         let route = initRoute(data, '=', '&');
@@ -54,8 +66,9 @@ const buildSecondPage = function(opts) {
                 
                 for(let m = 1;m <= pageSum;m++) {
                   data.pageNo = m;
+                  route_data.pn = m;
                   // 页面链接
-                  let page_route = initRoute(data, '_', '-');
+                  let page_route = initRoute(route_data, '_', '-');
                   loadPage(config.host + '/templatecenter/secondpage-' + page_route, (err, stdout, stderr) => {
                     fs.writeFile('html/templatecenter/secondpage-' + page_route, templatecenter(stdout), (werr) => {
                       global.buildPageNum++;
